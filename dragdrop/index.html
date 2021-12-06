@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+      .drag{
+            border: 1px solid black;
+            width: 200px;
+            height: 50px;
+            padding:10px;
+            margin: 10px;
+            }
+
+    .dragobj{
+            background-color:cyan;
+            }
+  </style>
+</head>
+<body>
+  <div class='drag' ondrop="onDrop(event)" ondragover="allowdrop(event)">
+    <div class='dragobj' id='dragitem11' draggable='true'  ondragstart='dragstart(event)'>
+      ....
+    </div>
+  </div>
+  <div class='drag' id='dragitem2' ondrop="onDrop(event)" ondragover="allowdrop(event)" >
+  </div>
+</body>
+<script > 
+        function dragstart (e){
+            e.dataTransfer.setData('text',e.target.id)
+        }
+
+        function onDrop(e) {
+            let id = e.dataTransfer.getData('text');
+            e.target.appendChild(document.getElementById(id));
+        }
+
+        function allowdrop(e) {
+            e.preventDefault();
+        }
+</script>
+</html>
