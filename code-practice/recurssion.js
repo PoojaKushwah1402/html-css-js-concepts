@@ -1,12 +1,13 @@
-function getEmployee(key,empCount,emp) {
+function getEmployee(key, emp) { // recurrsion function
+
     if(emp[key] && emp[key].length){
+
        let count = 0;
         for(let x=0; x<emp[key].length; x++){
           
              if(emp[emp[key][x]]){
-               count = count + emp[emp[key][x]].length + getEmployee(emp[key][x],empCount,emp)
-             }
-               
+               count = count + emp[emp[key][x]].length + getEmployee(emp[key][x], emp)
+             } 
          }
         return count;
     }else{
@@ -17,16 +18,11 @@ function getEmployee(key,empCount,emp) {
   
   function findList(emp) {
     let empCount={};
-    
-    for(let i in emp) {
-      empCount[i] = emp[i].length
-    } 
-    
-    for(let x in empCount){
-      empCount[x] = empCount[x] + getEmployee(x,empCount,emp)
-    }
-    //getEmployee(emp,empCount)
-    //console.log(empCount)
+
+    for(let x in emp){
+        empCount[x] = emp[x].length + getEmployee(x, emp)
+      }
+
     return empCount
   }
   
