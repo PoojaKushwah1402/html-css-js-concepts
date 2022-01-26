@@ -104,4 +104,69 @@ LO\b
 
 The \0 metacharacter maches NUL characters.
 
+The \n character matches newline characters.
+
+The \xxx metacharacters matches the Latin character by an octal number (xxx).
+
+The \xdd metacharacters matches Latin characters specified by a hexadecimal number (dd).
+
+The \udddd metacharacters matches Unicode characters specified by a hexadecimal number (dddd).
+
+The n+ quantifier matches any string that contains at least one n.
+
+The n* quantifier matches any string that contains zero or more occurrences of n.
+
+The n? quantifier matches any string that contains zero or one occurrences of n.
+
+The n{X} quantifier matches any string that contains a sequence of X n's.
+X must be a number.
+/c{3}/.test('33cdcscccd') = true
+
+The n{X,Y} quantifier matches any string that contains a sequence of X to Y n's.
+X and Y must be a number.
+/c{2,5}/.test('33cdcscdcccccc') = true
+
+The n{X,} quantifier matches any string that contains a sequence of at least X n's.
+X must be a number.
+/c{4,}/.test('33cdcscdcccc') = true
+
+The n$ quantifier matches any string with n at the end of it.
+Tip: Use the ^n quantifier to match any string with n at the BEGINNING of it.
+
+The ?=n quantifier matches any string that is followed by a specific string n.
+/a(?=dd)/.test('addc') = true
+
+The ?!n quantifier matches any string that is not followed by a specific string n.
+/a(?!d)/.test('afddc') = true
+
+check if string contain only alphabet : /^[a-z]+$/i
+check if string containe only alphabet with hyphen :  /^[a-z]+(-[a-z]+)*$/i
+
 */
+
+let str = 'hello you there 123 hd-hjer 678';
+let str1= 'jds dsaf lkdf kdsa fkldsf, adsbf ldka ads? asd bfdal ds bf[l. akf dhj ds 878 dwa WE DE 7475 dsfh ds RAMU 748 dj'
+
+const findStr = str => {
+  let newStr = str.split(' ');
+  let count = 0;
+  let patt = /^[a-z]+(-[a-z]+)*([?,]*)$/i
+  
+  for(let x in newStr) {
+    let len = newStr[x].length;
+    let word = newStr[x]
+    if(/[,.?]/.test(newStr[x][len-1])){
+       word = word.slice(0,-1)
+       }
+    
+      if(patt.test(word)){
+        count++
+      }else {
+        //console.log(newStr[x],word)
+      }
+  }
+  
+  console.log(count)
+}
+
+findStr(str1)
